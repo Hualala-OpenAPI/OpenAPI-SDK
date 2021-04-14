@@ -8,4 +8,13 @@ public class BaseResponse<T> {
     private T data;
     private String message;
     private String traceID;
+
+    public void copy(BaseResponse bean) {
+        if (null != bean) {
+            this.code = bean.code;
+            this.message = bean.message;
+            this.traceID = bean.traceID;
+        }
+    }
+
 }

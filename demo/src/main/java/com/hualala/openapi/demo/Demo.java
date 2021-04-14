@@ -1,5 +1,6 @@
 package com.hualala.openapi.demo;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hualala.openapi.sdk.consts.SDKConst;
 import com.hualala.openapi.sdk.helper.APIHelper;
 import com.hualala.openapi.sdk.intf.OpenAPIEngine;
@@ -14,6 +15,6 @@ public class Demo {
         System.setProperty(SDKConst.APP_SECRET_KEY, "bRFVbWHQ");
 
         OpenAPIEngine engine = new APIHelper();
-        System.out.println(engine.getDocBaseInfo(1155L, 76068673L));
+        System.out.println(JSONObject.toJSONString(engine.getDocBaseInfo(1155L, 76068673L)));
     }
 }
