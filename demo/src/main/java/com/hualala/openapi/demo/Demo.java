@@ -1,27 +1,20 @@
 package com.hualala.openapi.demo;
 
+import com.hualala.openapi.sdk.beans.request.DocBaseInfoBean;
 import com.hualala.openapi.sdk.consts.SDKConst;
-import com.hualala.openapi.sdk.requests.BaseRequest;
+import com.hualala.openapi.sdk.requests.DocBaseInfoRequest;
 import com.hualala.openapi.sdk.utils.WebUtil;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Demo {
 
-    @Data
-    private static class OpenFood {
-        private Long groupID;
-        private Long shopID;
-    }
-
     public static void main(String[] arg) {
 
-        BaseRequest<OpenFood> request = new BaseRequest();
-        request.setPath("/doc/getBaseInfo");
+        DocBaseInfoRequest request = new DocBaseInfoRequest();
         request.setGroupID(1155L);
         request.setShopID(76068673L);
-        OpenFood requestBody = new OpenFood();
+        DocBaseInfoBean requestBody = new DocBaseInfoBean();
         requestBody.setGroupID(1155L);
         requestBody.setShopID(76068673L);
         request.setRequestBody(requestBody);
@@ -31,12 +24,10 @@ public class Demo {
             System.setProperty(SDKConst.APP_KEY_KEY, "1010");
             System.setProperty(SDKConst.APP_SECRET_KEY, "bRFVbWHQ");
 
-            String response = WebUtil.put(request);
+            String response = WebUtil.post(request);
             System.out.println(response);
         } catch (Exception e) {
             log.error("exception", e);
         }
-
-        return;
     }
 }

@@ -43,7 +43,7 @@ public class WebUtil {
         return null;
     }
 
-    public static <T> String put(BaseRequest<T> request) throws Exception {
+    public static <T> String post(BaseRequest<T> request) throws Exception {
         valid(request);
 
         long timestamp = TimeUtil.getTimestamp();
