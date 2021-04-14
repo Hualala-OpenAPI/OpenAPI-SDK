@@ -88,7 +88,6 @@ public class SignUtil {
                     .collect(Collectors.joining());
 
                 sign = getSHA_1(SIGNATURE_PREFIX + paramList + SIGNATURE_SUFFIX);
-                log.info("json: {} plant: {} sign: {}", jsonObject.toJSONString(), paramList, sign);
             } catch (Exception e) {
                 log.error("签名异常 getSign json: {}", json, e);
             }
