@@ -63,8 +63,7 @@ public class WebUtil {
             return null;
         }
 
-        String requestBody = SignUtil.AESEncode(DevConfig.getInstance().getAppSecret() + DevConfig.getInstance().getAppSecret(),
-            JSONObject.toJSONString(request.getRequestBody()));
+        String requestBody = SignUtil.AESEncode(DevConfig.getInstance().getAppSecret(), JSONObject.toJSONString(request.getRequestBody()));
         FormBody.Builder bodyBuilder = new FormBody.Builder()
             .add("timestamp", String.valueOf(timestamp))
             .add("appKey", DevConfig.getInstance().getAppKey())
