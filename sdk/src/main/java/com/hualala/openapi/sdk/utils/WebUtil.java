@@ -32,7 +32,7 @@ public class WebUtil {
                 case DEV:
                     return "https://dohko-open-api.hualala.com";
                 case ONLINE:
-                    return "https://open-api.hualala.com";
+                    return "https://www-openapi.hualala.com";
                 default:
                     log.error("环境变量非法");
             }
