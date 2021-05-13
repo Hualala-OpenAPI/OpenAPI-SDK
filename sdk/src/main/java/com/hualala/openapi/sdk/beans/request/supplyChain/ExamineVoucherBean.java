@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ExamineVoucherBean {
+    private ExamineVoucherCommon commRequest;
     private Long groupID;
     private Integer demandType;
     private Integer importStatus;
@@ -15,4 +16,10 @@ public class ExamineVoucherBean {
     private Integer pageNo;
     private Integer pageSize;
     private Integer pageFlag;
+
+    @Data
+    public static class ExamineVoucherCommon {
+        private Long groupID;
+    }
+
 }
