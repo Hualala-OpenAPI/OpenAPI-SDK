@@ -10,8 +10,8 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -49,8 +49,8 @@ public class SignUtil {
         }
     }
 
-    private static List<PairBean<String>> parseValue(String key, Object value) {
-        List<PairBean<String>> list = new ArrayList<>();
+    private static Set<PairBean<String>> parseValue(String key, Object value) {
+        Set<PairBean<String>> set = new HashSet<>();
 
         if (null != value && !SIGNATURE.equalsIgnoreCase(key)) {
             if (value instanceof JSONArray) {
@@ -59,20 +59,20 @@ public class SignUtil {
                     Object element = tmp.get(0);
                     if (element instanceof JSONArray || element instanceof JSONObject) {
                         //list结构非空, 取第一个元素
-                        list.addAll(parseValue(key, element));
+                        set.addAll(parseValue(key, element));
                     }
                 }
             } else if (value instanceof JSONObject) {
                 JSONObject tmp = (JSONObject) value;
                 for (String k : tmp.keySet()) {
-                    list.addAll(parseValue(k, tmp.get(k)));
+                    set.addAll(parseValue(k, tmp.get(k)));
                 }
             } else {
-                list.add(new PairBean<>(key, value.toString()));
+                set.add(new PairBean<>(key, value.toString()));
             }
         }
 
-        return list;
+        return set;
     }
 
     public static String calcSign(String json) {
@@ -81,13 +81,15 @@ public class SignUtil {
         JSONObject jsonObject = JSONObject.parseObject(json);
         if (null != jsonObject) {
             try {
-                List<PairBean<String>> fieldList = parseValue(null, jsonObject);
+                Set<PairBean<String>> fieldList = parseValue(null, jsonObject);
                 String paramList = fieldList.stream()
                     .sorted((a, b) -> a.getKey().compareToIgnoreCase(b.getKey()))
                     .map(e -> String.format("%s%s", e.getKey(), e.getValue()))
                     .collect(Collectors.joining());
 
-                sign = getSHA_1(SIGNATURE_PREFIX + paramList + SIGNATURE_SUFFIX);
+                String str = SIGNATURE_PREFIX + paramList + SIGNATURE_SUFFIX;
+                log.info("加密前明文: {}", str);
+                sign = getSHA_1(str);
             } catch (Exception e) {
                 log.error("签名异常 getSign json: {}", json, e);
             }
