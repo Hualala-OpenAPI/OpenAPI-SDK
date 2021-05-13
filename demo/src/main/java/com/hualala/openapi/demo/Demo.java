@@ -1,6 +1,7 @@
 package com.hualala.openapi.demo;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.consts.SDKConst;
 import com.hualala.openapi.sdk.consts.SDKEnv;
 import com.hualala.openapi.sdk.helper.APIHelper;
@@ -30,6 +31,8 @@ public class Demo {
 
         System.setProperty(SDKConst.APP_KEY_KEY, "");
         System.setProperty(SDKConst.APP_SECRET_KEY, "");
-        System.out.println(JSONObject.toJSONString(engine.getDocBaseInfo(0L, 0L)));
+
+        ExamineVoucherBean bean = JSONObject.parseObject("", ExamineVoucherBean.class);
+        System.out.println(JSONObject.toJSONString(engine.queryExamineVoucher(0L, bean)));
     }
 }
