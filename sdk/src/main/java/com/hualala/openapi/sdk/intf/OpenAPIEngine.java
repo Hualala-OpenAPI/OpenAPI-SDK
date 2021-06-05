@@ -1,9 +1,11 @@
 package com.hualala.openapi.sdk.intf;
 
+import com.hualala.openapi.sdk.beans.request.supplyChain.AllotGoodsBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.shop.DocBaseInfoResponse;
+import com.hualala.openapi.sdk.responses.supplyChain.AllotGoodsResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.ExamineVoucherResponse;
 
 public interface OpenAPIEngine {
@@ -16,4 +18,5 @@ public interface OpenAPIEngine {
     //营销
     //供应链
     ExamineVoucherResponse queryExamineVoucher(long groupID, ExamineVoucherBean bean);
+    AllotGoodsResponse allotGoods(long groupID, AllotGoodsBean bean);
 }
