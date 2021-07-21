@@ -31,6 +31,8 @@ public class WebUtil {
             switch (SDKEnv.valueOf(env)) {
                 case DEV:
                     return "https://dohko-open-api.hualala.com";
+                case LOCAL:
+                    return "http://remote.hualala.com:8098";
                 case ONLINE:
                     return "https://www-openapi.hualala.com";
                 default:

@@ -1,6 +1,8 @@
 package com.hualala.openapi.demo;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
+import com.hualala.openapi.sdk.beans.request.supplyChain.AllotGoodsBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.consts.SDKConst;
 import com.hualala.openapi.sdk.consts.SDKEnv;
@@ -13,9 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 public class Demo {
 
     public static void main(String[] arg) {
-        testDev();
+//        testDev();
 //        testOnline();
 //        testOrderDev();
+        testDataUpload();
+        testAllotGoods();
     }
 
     private static void testDev() {
@@ -47,5 +51,34 @@ public class Demo {
 
         ExamineVoucherBean bean = JSONObject.parseObject("", ExamineVoucherBean.class);
         System.out.println(JSONObject.toJSONString(engine.queryExamineVoucher(0L, bean)));
+    }
+
+    private static void testDataUpload() {
+        OpenAPIEngine engine = new APIHelper();
+        System.setProperty(SDKConst.ENV_KEY, SDKEnv.ONLINE.name());
+
+        //need modify
+        System.setProperty(SDKConst.APP_KEY_KEY, "");
+        System.setProperty(SDKConst.APP_SECRET_KEY, "");
+        long groupID = 0L, shopID = 0L;
+        DataUploadBean bean = new DataUploadBean();
+        bean.setGroupID(groupID);
+        bean.setBusiness("评价");
+        bean.setPk("");
+        bean.setDatals("");
+        //modify end
+
+        System.out.println(JSONObject.toJSONString(engine.dataUpload(groupID, shopID, bean)));
+    }
+
+    private static void testAllotGoods() {
+        OpenAPIEngine engine = new APIHelper();
+        System.setProperty(SDKConst.ENV_KEY, SDKEnv.ONLINE.name());
+
+        System.setProperty(SDKConst.APP_KEY_KEY, "");
+        System.setProperty(SDKConst.APP_SECRET_KEY, "");
+
+        AllotGoodsBean bean = JSONObject.parseObject("", AllotGoodsBean.class);
+        System.out.println(JSONObject.toJSONString(engine.allotGoods(0L, bean)));
     }
 }
