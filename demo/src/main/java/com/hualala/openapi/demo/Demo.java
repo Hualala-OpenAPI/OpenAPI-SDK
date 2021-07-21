@@ -2,6 +2,7 @@ package com.hualala.openapi.demo;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
+import com.hualala.openapi.sdk.beans.request.supplyChain.AllotGoodsBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.consts.SDKConst;
 import com.hualala.openapi.sdk.consts.SDKEnv;
@@ -18,6 +19,7 @@ public class Demo {
 //        testOnline();
 //        testOrderDev();
         testDataUpload();
+        testAllotGoods();
     }
 
     private static void testDev() {
@@ -67,5 +69,16 @@ public class Demo {
         //modify end
 
         System.out.println(JSONObject.toJSONString(engine.dataUpload(groupID, shopID, bean)));
+    }
+
+    private static void testAllotGoods() {
+        OpenAPIEngine engine = new APIHelper();
+        System.setProperty(SDKConst.ENV_KEY, SDKEnv.ONLINE.name());
+
+        System.setProperty(SDKConst.APP_KEY_KEY, "");
+        System.setProperty(SDKConst.APP_SECRET_KEY, "");
+
+        AllotGoodsBean bean = JSONObject.parseObject("", AllotGoodsBean.class);
+        System.out.println(JSONObject.toJSONString(engine.allotGoods(0L, bean)));
     }
 }
