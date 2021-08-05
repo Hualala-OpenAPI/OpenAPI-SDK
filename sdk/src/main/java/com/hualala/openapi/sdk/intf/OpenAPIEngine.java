@@ -4,6 +4,7 @@ import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.AllotGoodsBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
+import com.hualala.openapi.sdk.responses.bill.QueryBillDetailByReportDateResponse;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailResponse;
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
@@ -32,4 +33,6 @@ public interface OpenAPIEngine {
     DataUploadResponse dataUpload(long groupID, long shopID, DataUploadBean bean);
 
     QueryBillDetailResponse queryBillDetail(long groupID, long shopID, long reportDate, List<String> saasOrderKeys);
+
+    QueryBillDetailByReportDateResponse queryBillDetailByReportDate(long groupID, long shopID, long reportDate, int pageNo, int pageSize);
 }

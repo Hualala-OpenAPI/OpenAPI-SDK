@@ -1,17 +1,20 @@
 package com.hualala.openapi.sdk.helper;
 
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailBean;
+import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailByReportDateBean;
 import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
 import com.hualala.openapi.sdk.beans.request.shop.DocBaseInfoBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.AllotGoodsBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.intf.OpenAPIEngine;
+import com.hualala.openapi.sdk.requests.bill.QueryBillDetailByReportDateRequest;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailRequest;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
 import com.hualala.openapi.sdk.requests.report.DataUploadRequest;
 import com.hualala.openapi.sdk.requests.shop.DocBaseInfoRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.AllotGoodsRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.ExamineVoucherRequest;
+import com.hualala.openapi.sdk.responses.bill.QueryBillDetailByReportDateResponse;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailResponse;
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
@@ -108,6 +111,29 @@ public class APIHelper implements OpenAPIEngine {
             response = ResponseFormatter.format(resp, QueryBillDetailResponse.class);
         } catch (Exception e) {
             log.error("queryBillDetail 异常. groupID: {} shopID: {} date: {} keys: {}", groupID, shopID, reportDate, saasOrderKeys, e);
+        }
+
+        return response;
+    }
+
+    public QueryBillDetailByReportDateResponse queryBillDetailByReportDate(long groupID, long shopID, long reportDate, int pageNo, int pageSize) {
+        QueryBillDetailByReportDateResponse response = null;
+        try {
+            QueryBillDetailByReportDateRequest request = new QueryBillDetailByReportDateRequest();
+            request.setGroupID(groupID);
+            request.setShopID(shopID);
+            QueryBillDetailByReportDateBean bean = new QueryBillDetailByReportDateBean();
+            bean.setGroupID(groupID);
+            bean.setShopID(shopID);
+            bean.setReportDate(reportDate);
+            bean.setPageNo(pageNo);
+            bean.setPageSize(pageSize);
+            request.setRequestBody(bean);
+
+            String resp = WebUtil.post(request);
+            response = ResponseFormatter.format(resp, QueryBillDetailByReportDateResponse.class);
+        } catch (Exception e) {
+            log.error("queryBillDetailByReportDate 异常. groupID: {} shopID: {} date: {} page: {}-{}", groupID, shopID, reportDate, pageNo, pageSize, e);
         }
 
         return response;
