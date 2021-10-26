@@ -20,6 +20,7 @@ public class Demo {
 //        testOrderDev();
 //        testDataUpload();
 //        testAllotGoods();
+//        testGetMenu();
     }
 
     private static void testDev() {
@@ -80,5 +81,14 @@ public class Demo {
 
         AllotGoodsBean bean = JSONObject.parseObject("", AllotGoodsBean.class);
         System.out.println(JSONObject.toJSONString(engine.allotGoods(0L, bean)));
+    }
+
+    private static void testGetMenu() {
+        System.setProperty(SDKConst.ENV_KEY, SDKEnv.DEV.name());
+        System.setProperty(SDKConst.APP_KEY_KEY, "1010");
+        System.setProperty(SDKConst.APP_SECRET_KEY, "bRFVbWHQ");
+
+        OpenAPIEngine engine = new APIHelper();
+        System.out.println(JSONObject.toJSONString(engine.getMenu(1155L, 76068673L)));
     }
 }
