@@ -15,11 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 public class Demo {
 
     public static void main(String[] arg) {
-//        testDev();
+        testDev();
 //        testOnline();
 //        testOrderDev();
-        testDataUpload();
-        testAllotGoods();
+//        testDataUpload();
+//        testAllotGoods();
     }
 
     private static void testDev() {
