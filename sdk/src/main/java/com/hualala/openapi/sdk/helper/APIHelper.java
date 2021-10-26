@@ -12,6 +12,7 @@ import com.hualala.openapi.sdk.requests.bill.QueryBillDetailRequest;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
 import com.hualala.openapi.sdk.requests.report.DataUploadRequest;
 import com.hualala.openapi.sdk.requests.shop.DocBaseInfoRequest;
+import com.hualala.openapi.sdk.requests.shop.DocOpenFoodRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.AllotGoodsRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.ExamineVoucherRequest;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailByReportDateResponse;
@@ -19,6 +20,7 @@ import com.hualala.openapi.sdk.responses.bill.QueryBillDetailResponse;
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
 import com.hualala.openapi.sdk.responses.shop.DocBaseInfoResponse;
+import com.hualala.openapi.sdk.responses.shop.DocOpenFoodResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.AllotGoodsResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.ExamineVoucherResponse;
 import com.hualala.openapi.sdk.utils.WebUtil;
@@ -46,6 +48,27 @@ public class APIHelper implements OpenAPIEngine {
             response = ResponseFormatter.format(resp, DocBaseInfoResponse.class);
         } catch (Exception e) {
             log.error("getDocBaseInfo 异常. groupID: {} shopID: {}", groupID, shopID, e);
+        }
+
+        return response;
+    }
+
+    public DocOpenFoodResponse getMenu(Long groupID, Long shopID) {
+        DocOpenFoodResponse response = null;
+
+        DocOpenFoodRequest request = new DocOpenFoodRequest();
+        request.setGroupID(groupID);
+        request.setShopID(shopID);
+        DocBaseInfoBean requestBody = new DocBaseInfoBean();
+        requestBody.setGroupID(groupID);
+        requestBody.setShopID(shopID);
+        request.setRequestBody(requestBody);
+
+        try {
+            String resp = WebUtil.post(request);
+            response = ResponseFormatter.format(resp, DocOpenFoodResponse.class);
+        } catch (Exception e) {
+            log.error("getMenu 异常. groupID: {} shopID: {}", groupID, shopID, e);
         }
 
         return response;

@@ -9,6 +9,7 @@ import com.hualala.openapi.sdk.responses.bill.QueryBillDetailResponse;
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
 import com.hualala.openapi.sdk.responses.shop.DocBaseInfoResponse;
+import com.hualala.openapi.sdk.responses.shop.DocOpenFoodResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.AllotGoodsResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.ExamineVoucherResponse;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public interface OpenAPIEngine {
     //基本档
     DocBaseInfoResponse getDocBaseInfo(Long groupID, Long shopID);
+    DocOpenFoodResponse getMenu(Long groupID, Long shopID);
 
     //订单
     ThirdOrderResponse thirdOrder(ThirdOrderRequest request);
