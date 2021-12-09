@@ -6,6 +6,7 @@ import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailByReportDateResponse;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailResponse;
+import com.hualala.openapi.sdk.responses.equityAccount.QueryProductItemsResponse;
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
 import com.hualala.openapi.sdk.responses.shop.DocBaseInfoResponse;
@@ -37,4 +38,7 @@ public interface OpenAPIEngine {
     QueryBillDetailResponse queryBillDetail(long groupID, long shopID, long reportDate, List<String> saasOrderKeys);
 
     QueryBillDetailByReportDateResponse queryBillDetailByReportDate(long groupID, long shopID, long reportDate, int pageNo, int pageSize);
+
+    //权益账户
+    QueryProductItemsResponse queryProductItemsByProductCategory(long groupID, String source);
 }
