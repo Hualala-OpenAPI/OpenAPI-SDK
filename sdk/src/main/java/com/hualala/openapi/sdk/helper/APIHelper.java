@@ -2,6 +2,7 @@ package com.hualala.openapi.sdk.helper;
 
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailByReportDateBean;
+import com.hualala.openapi.sdk.beans.request.equityAccount.QueryProductItemsBean;
 import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
 import com.hualala.openapi.sdk.beans.request.shop.DocBaseInfoBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.AllotGoodsBean;
@@ -9,6 +10,7 @@ import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.intf.OpenAPIEngine;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailByReportDateRequest;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailRequest;
+import com.hualala.openapi.sdk.requests.equityAccount.QueryProductItemsRequest;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
 import com.hualala.openapi.sdk.requests.report.DataUploadRequest;
 import com.hualala.openapi.sdk.requests.shop.DocBaseInfoRequest;
@@ -17,6 +19,7 @@ import com.hualala.openapi.sdk.requests.supplyChain.AllotGoodsRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.ExamineVoucherRequest;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailByReportDateResponse;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailResponse;
+import com.hualala.openapi.sdk.responses.equityAccount.QueryProductItemsResponse;
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
 import com.hualala.openapi.sdk.responses.shop.DocBaseInfoResponse;
@@ -172,6 +175,24 @@ public class APIHelper implements OpenAPIEngine {
             response = ResponseFormatter.format(resp, AllotGoodsResponse.class);
         } catch (Exception e) {
             log.error("allotGoods 异常. groupID: {} bean: {}", groupID, bean, e);
+        }
+
+        return response;
+    }
+
+    public QueryProductItemsResponse queryProductItemsByProductCategory(long groupID, String source) {
+        QueryProductItemsResponse response = null;
+        try {
+            QueryProductItemsRequest request = new QueryProductItemsRequest();
+            request.setGroupID(groupID);
+            QueryProductItemsBean bean = new QueryProductItemsBean();
+            bean.setSource(source);
+            request.setRequestBody(bean);
+
+            String resp = WebUtil.post(request);
+            response = ResponseFormatter.format(resp, QueryProductItemsResponse.class);
+        } catch (Exception e) {
+            log.error("queryProductItemsByProductCategory 异常. groupID: {} source: {}", groupID, source, e);
         }
 
         return response;
