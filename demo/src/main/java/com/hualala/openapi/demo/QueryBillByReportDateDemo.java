@@ -24,7 +24,7 @@ public class QueryBillByReportDateDemo {
         //修改以下参数
         final long groupID = 0L;
         final long shopID = 0L;
-        final long reportDate = 0L;
+        final String reportDate = "";
 
         final String appKey = "";
         final String appSecret = "";

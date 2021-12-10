@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class QueryBillDetailByReportDateBean extends BaseBean {
-    private Long reportDate;
+    private String reportDate;
     private Integer pageNo;
     private Integer pageSize;
 }

@@ -120,7 +120,7 @@ public class APIHelper implements OpenAPIEngine {
         return response;
     }
 
-    public QueryBillDetailResponse queryBillDetail(long groupID, long shopID, long reportDate, List<String> saasOrderKeys) {
+    public QueryBillDetailResponse queryBillDetail(long groupID, long shopID, String reportDate, List<String> saasOrderKeys) {
         QueryBillDetailResponse response = null;
         try {
             QueryBillDetailRequest request = new QueryBillDetailRequest();
@@ -142,7 +142,7 @@ public class APIHelper implements OpenAPIEngine {
         return response;
     }
 
-    public QueryBillDetailByReportDateResponse queryBillDetailByReportDate(long groupID, long shopID, long reportDate, int pageNo, int pageSize) {
+    public QueryBillDetailByReportDateResponse queryBillDetailByReportDate(long groupID, long shopID, String reportDate, int pageNo, int pageSize) {
         QueryBillDetailByReportDateResponse response = null;
         try {
             QueryBillDetailByReportDateRequest request = new QueryBillDetailByReportDateRequest();

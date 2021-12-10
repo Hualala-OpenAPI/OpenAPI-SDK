@@ -30,7 +30,7 @@ public class BillPusher {
         //修改以下参数
         final long groupID = 0L;
         final long shopID = 0L;
-        final long reportDate = 0L;
+        final String reportDate = "";
         final List<String> saasOrderKeyList = Arrays.asList("");
 
         final String appKey = "";

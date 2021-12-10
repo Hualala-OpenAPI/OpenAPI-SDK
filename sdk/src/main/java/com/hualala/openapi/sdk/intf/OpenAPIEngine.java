@@ -35,9 +35,9 @@ public interface OpenAPIEngine {
     //报表
     DataUploadResponse dataUpload(long groupID, long shopID, DataUploadBean bean);
 
-    QueryBillDetailResponse queryBillDetail(long groupID, long shopID, long reportDate, List<String> saasOrderKeys);
+    QueryBillDetailResponse queryBillDetail(long groupID, long shopID, String reportDate, List<String> saasOrderKeys);
 
-    QueryBillDetailByReportDateResponse queryBillDetailByReportDate(long groupID, long shopID, long reportDate, int pageNo, int pageSize);
+    QueryBillDetailByReportDateResponse queryBillDetailByReportDate(long groupID, long shopID, String reportDate, int pageNo, int pageSize);
 
     //权益账户
     QueryProductItemsResponse queryProductItemsByProductCategory(long groupID, String source);

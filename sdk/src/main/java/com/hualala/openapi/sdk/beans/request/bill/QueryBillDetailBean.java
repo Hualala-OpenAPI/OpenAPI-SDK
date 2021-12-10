@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class QueryBillDetailBean extends BaseBean {
-    private Long reportDate;
+    private String reportDate;
     private String saasOrderKeys;
 }
