@@ -1,6 +1,7 @@
 package com.hualala.openapi.sdk.intf;
 
 import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
+import com.hualala.openapi.sdk.beans.request.shop.DocCreateShopBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.AllotGoodsBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
@@ -10,6 +11,7 @@ import com.hualala.openapi.sdk.responses.equityAccount.QueryProductItemsResponse
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
 import com.hualala.openapi.sdk.responses.shop.DocBaseInfoResponse;
+import com.hualala.openapi.sdk.responses.shop.DocCreateShopResponse;
 import com.hualala.openapi.sdk.responses.shop.DocOpenFoodResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.AllotGoodsResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.ExamineVoucherResponse;
@@ -20,6 +22,7 @@ public interface OpenAPIEngine {
     //基本档
     DocBaseInfoResponse getDocBaseInfo(Long groupID, Long shopID);
     DocOpenFoodResponse getMenu(Long groupID, Long shopID);
+    DocCreateShopResponse createShop(Long groupID, DocCreateShopBean shop);
 
     //订单
     ThirdOrderResponse thirdOrder(ThirdOrderRequest request);

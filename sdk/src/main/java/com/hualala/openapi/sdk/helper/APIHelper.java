@@ -5,6 +5,7 @@ import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailByReportDateBea
 import com.hualala.openapi.sdk.beans.request.equityAccount.QueryProductItemsBean;
 import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
 import com.hualala.openapi.sdk.beans.request.shop.DocBaseInfoBean;
+import com.hualala.openapi.sdk.beans.request.shop.DocCreateShopBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.AllotGoodsBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.intf.OpenAPIEngine;
@@ -14,6 +15,7 @@ import com.hualala.openapi.sdk.requests.equityAccount.QueryProductItemsRequest;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
 import com.hualala.openapi.sdk.requests.report.DataUploadRequest;
 import com.hualala.openapi.sdk.requests.shop.DocBaseInfoRequest;
+import com.hualala.openapi.sdk.requests.shop.DocCreateShopRequest;
 import com.hualala.openapi.sdk.requests.shop.DocOpenFoodRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.AllotGoodsRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.ExamineVoucherRequest;
@@ -23,6 +25,7 @@ import com.hualala.openapi.sdk.responses.equityAccount.QueryProductItemsResponse
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
 import com.hualala.openapi.sdk.responses.shop.DocBaseInfoResponse;
+import com.hualala.openapi.sdk.responses.shop.DocCreateShopResponse;
 import com.hualala.openapi.sdk.responses.shop.DocOpenFoodResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.AllotGoodsResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.ExamineVoucherResponse;
@@ -72,6 +75,23 @@ public class APIHelper implements OpenAPIEngine {
             response = ResponseFormatter.format(resp, DocOpenFoodResponse.class);
         } catch (Exception e) {
             log.error("getMenu 异常. groupID: {} shopID: {}", groupID, shopID, e);
+        }
+
+        return response;
+    }
+
+    public DocCreateShopResponse createShop(Long groupID, DocCreateShopBean shop) {
+        DocCreateShopResponse response = null;
+
+        DocCreateShopRequest request = new DocCreateShopRequest();
+        request.setGroupID(groupID);
+        request.setRequestBody(shop);
+
+        try {
+            String resp = WebUtil.post(request);
+            response = ResponseFormatter.format(resp, DocCreateShopResponse.class);
+        } catch (Exception e) {
+            log.error("getMenu 异常. groupID: {} shopID: {}", groupID, shop, e);
         }
 
         return response;
