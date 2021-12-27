@@ -1,10 +1,10 @@
 package com.hualala.openapi.sdk.beans.request.shop;
 
 import com.hualala.openapi.sdk.beans.request.BaseBean;
+import com.hualala.openapi.sdk.beans.request.HeaderBean;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Map;
 
 @Data
 public class DocCreateShopBean extends BaseBean {
@@ -29,8 +29,9 @@ public class DocCreateShopBean extends BaseBean {
     private Double mapLatitudeValue;
     private List<ShopTime> shopTimeList;
     private List<CashierShift> cashierShiftList;
-    private Map<String, String> header;//暂时只放traceID
+    private HeaderBean header;//暂时只放traceID
 
+    @Data
     public static class ShopTime {
         private String timeID;
         private String timeName;
@@ -39,6 +40,7 @@ public class DocCreateShopBean extends BaseBean {
         private String isActive;
     }
 
+    @Data
     public static class CashierShift {
         private String id;
         private String shiftName;

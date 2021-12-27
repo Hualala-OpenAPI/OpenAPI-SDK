@@ -2,6 +2,7 @@ package com.hualala.openapi.sdk.helper;
 
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailByReportDateBean;
+import com.hualala.openapi.sdk.beans.request.crm.QueryUnionIDListBean;
 import com.hualala.openapi.sdk.beans.request.equityAccount.QueryProductItemsBean;
 import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
 import com.hualala.openapi.sdk.beans.request.shop.DocBaseInfoBean;
@@ -11,6 +12,7 @@ import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.intf.OpenAPIEngine;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailByReportDateRequest;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailRequest;
+import com.hualala.openapi.sdk.requests.crm.QueryUnionIDListRequest;
 import com.hualala.openapi.sdk.requests.equityAccount.QueryProductItemsRequest;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
 import com.hualala.openapi.sdk.requests.report.DataUploadRequest;
@@ -107,6 +109,20 @@ public class APIHelper implements OpenAPIEngine {
         }
 
         return response;
+    }
+
+    //会员
+    public String queryUnionIDs(long groupID, QueryUnionIDListBean bean) {
+        try {
+            QueryUnionIDListRequest request = new QueryUnionIDListRequest();
+            request.setGroupID(groupID);
+            request.setRequestBody(bean);
+            return WebUtil.post(request);
+        } catch (Exception e) {
+            log.error("queryUnionIDs 异常. groupID: {} bean: {}", groupID, bean, e);
+        }
+
+        return null;
     }
 
     public ExamineVoucherResponse queryExamineVoucher(long groupID, ExamineVoucherBean bean) {
