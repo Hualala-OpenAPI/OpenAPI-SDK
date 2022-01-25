@@ -2,7 +2,9 @@ package com.hualala.openapi.sdk.helper;
 
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailByReportDateBean;
+import com.hualala.openapi.sdk.beans.request.crm.QueryUnionIDListBean;
 import com.hualala.openapi.sdk.beans.request.equityAccount.QueryProductItemsBean;
+import com.hualala.openapi.sdk.beans.request.promotion.QueryUserCouponDetailListBean;
 import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
 import com.hualala.openapi.sdk.beans.request.shop.DocBaseInfoBean;
 import com.hualala.openapi.sdk.beans.request.shop.DocCreateShopBean;
@@ -11,8 +13,10 @@ import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.intf.OpenAPIEngine;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailByReportDateRequest;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailRequest;
+import com.hualala.openapi.sdk.requests.crm.QueryUnionIDListRequest;
 import com.hualala.openapi.sdk.requests.equityAccount.QueryProductItemsRequest;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
+import com.hualala.openapi.sdk.requests.promotion.QueryUserCouponDetailListRequest;
 import com.hualala.openapi.sdk.requests.report.DataUploadRequest;
 import com.hualala.openapi.sdk.requests.shop.DocBaseInfoRequest;
 import com.hualala.openapi.sdk.requests.shop.DocCreateShopRequest;
@@ -23,6 +27,7 @@ import com.hualala.openapi.sdk.responses.bill.QueryBillDetailByReportDateRespons
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailResponse;
 import com.hualala.openapi.sdk.responses.equityAccount.QueryProductItemsResponse;
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
+import com.hualala.openapi.sdk.responses.promotion.QueryUserCouponDetailListResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
 import com.hualala.openapi.sdk.responses.shop.DocBaseInfoResponse;
 import com.hualala.openapi.sdk.responses.shop.DocCreateShopResponse;
@@ -46,7 +51,7 @@ public class APIHelper implements OpenAPIEngine {
         request.setShopID(shopID);
         DocBaseInfoBean requestBody = new DocBaseInfoBean();
         requestBody.setGroupID(groupID);
-        requestBody.setShopID(shopID);
+//        requestBody.setShopID(shopID);
         request.setRequestBody(requestBody);
 
         try {
@@ -107,6 +112,35 @@ public class APIHelper implements OpenAPIEngine {
         }
 
         return response;
+    }
+
+    //会员
+    public String queryUnionIDs(long groupID, QueryUnionIDListBean bean) {
+        try {
+            QueryUnionIDListRequest request = new QueryUnionIDListRequest();
+            request.setGroupID(groupID);
+            request.setRequestBody(bean);
+            return WebUtil.post(request);
+        } catch (Exception e) {
+            log.error("queryUnionIDs 异常. groupID: {} bean: {}", groupID, bean, e);
+        }
+
+        return null;
+    }
+
+    public String queryUserCouponDetailList(QueryUserCouponDetailListBean bean) {
+        try {
+            QueryUserCouponDetailListRequest request = new QueryUserCouponDetailListRequest();
+            request.setGroupID(bean.getGroupID());
+            request.setShopID(bean.getShopID());
+            request.setRequestBody(bean);
+
+            return WebUtil.post(request);
+        } catch (Exception e) {
+            log.error("queryUserCouponDetailList 异常. bean: {}",  bean, e);
+        }
+
+        return null;
     }
 
     public ExamineVoucherResponse queryExamineVoucher(long groupID, ExamineVoucherBean bean) {
