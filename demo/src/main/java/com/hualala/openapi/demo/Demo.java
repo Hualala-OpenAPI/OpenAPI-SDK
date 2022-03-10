@@ -9,18 +9,33 @@ import com.hualala.openapi.sdk.consts.SDKEnv;
 import com.hualala.openapi.sdk.helper.APIHelper;
 import com.hualala.openapi.sdk.intf.OpenAPIEngine;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
+import com.hualala.openapi.sdk.utils.SignUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 @Slf4j
 public class Demo {
 
     public static void main(String[] arg) {
-        testDev();
+        testDecode();
+
+//        testDev();
 //        testOnline();
 //        testOrderDev();
 //        testDataUpload();
 //        testAllotGoods();
 //        testGetMenu();
+    }
+
+    private static void testDecode() {
+        String appSecret = null;
+        String ciphertext = null;
+        String plaintext = SignUtil.AESDecode(appSecret, ciphertext);
+        if (StringUtils.isNotEmpty(plaintext)) {
+            log.info("\n***\n*解密结果:\n{}\n*appSecret:{}\n*密文:{}\n***\n", plaintext, appSecret, ciphertext);
+        } else {
+            log.error("\n***\n*解密失败\n*appSecret:{}\n*密文:{}\n***\n", appSecret, ciphertext);
+        }
     }
 
     private static void testDev() {

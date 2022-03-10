@@ -5,10 +5,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.hualala.openapi.sdk.beans.PairBean;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import sun.misc.BASE64Decoder;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.HashSet;
 import java.util.Set;
@@ -134,5 +136,29 @@ public class SignUtil {
             log.error("AESEncode error ", e);
             throw e;
         }
+    }
+
+    public static String AESDecode(String appSecret, String ciphertext) {
+        if (StringUtils.isNotBlank(appSecret) && StringUtils.isNoneBlank(ciphertext)) {
+            try {
+                if (appSecret.length() < 16) {
+                    appSecret = appSecret + appSecret;
+                }
+
+                byte[] appSecretBytes = appSecret.getBytes(StandardCharsets.UTF_8);
+                SecretKeySpec keySpec = new SecretKeySpec(appSecretBytes, "AES");
+                IvParameterSpec ivSpec = new IvParameterSpec(appSecretBytes);
+                Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+                cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+
+                return new String(cipher.doFinal(new BASE64Decoder().decodeBuffer(ciphertext)));
+            } catch (Exception e) {
+                log.error("AESDecode error ", e);
+            }
+        } else {
+            log.error("参数非法, 不支持解密");
+        }
+
+        return null;
     }
 }
