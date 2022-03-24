@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.apache.commons.lang3.StringUtils;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -98,8 +99,8 @@ public class BillPusher {
 
     private static boolean httpSend(long groupID, String url, String orderKey, String orderBody) {
         log.info(System.currentTimeMillis() + " 开始推送 " + orderKey);
-        RequestBody requestBody = RequestBody.create(MediaType.parse(WWW_FORM_URLENCODED),
-            String.format("groupID=%d&data=[%s]", groupID, orderBody));
+        RequestBody requestBody = RequestBody.create(String.format("groupID=%d&data=[%s]", groupID, URLEncoder.encode(orderBody)),
+            MediaType.parse(WWW_FORM_URLENCODED));
 
         int retry = 10;
         do {
