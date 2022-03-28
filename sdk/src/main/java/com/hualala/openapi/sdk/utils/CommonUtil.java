@@ -11,4 +11,7 @@ public class CommonUtil {
         return UUID.randomUUID().toString().replaceAll(SDKConst.SEPARATOR_MINUS, StringUtils.EMPTY).toLowerCase();
     }
 
+    //网络请求
+    public static final String JSON_PROTOCOL = "application/json;charset=UTF-8";
+
 }

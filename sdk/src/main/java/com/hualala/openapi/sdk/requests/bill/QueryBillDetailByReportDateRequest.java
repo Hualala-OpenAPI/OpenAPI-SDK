@@ -9,4 +9,5 @@ public class QueryBillDetailByReportDateRequest extends BaseRequest<QueryBillDet
         this.path = "/report/getShopBillDetail";
     }
 
+
 }

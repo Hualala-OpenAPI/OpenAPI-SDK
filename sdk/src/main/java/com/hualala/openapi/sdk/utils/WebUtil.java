@@ -2,6 +2,7 @@ package com.hualala.openapi.sdk.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.util.TypeUtils;
 import com.hualala.openapi.sdk.config.DevConfig;
 import com.hualala.openapi.sdk.consts.SDKEnv;
 import com.hualala.openapi.sdk.requests.BaseRequest;
@@ -58,7 +59,7 @@ public class WebUtil {
         if (null != request.getRequestBody()) {
             data.put("data", request.getRequestBody());
         }
-
+        TypeUtils.compatibleWithJavaBean = true; //用来处理特殊json驼峰字段类型
         String sign = SignUtil.calcSign(JSON.toJSONString(data));
         if (StringUtils.isEmpty(sign)) {
             log.error("签名失败. request: {} devConfig: {}", request, DevConfig.getInstance());

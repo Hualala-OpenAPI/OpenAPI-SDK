@@ -17,9 +17,9 @@ import org.apache.commons.lang3.StringUtils;
 public class Demo {
 
     public static void main(String[] arg) {
-        testDecode();
+//        testDecode();
 
-//        testDev();
+        testDev();
 //        testOnline();
 //        testOrderDev();
 //        testDataUpload();
@@ -39,10 +39,6 @@ public class Demo {
     }
 
     private static void testDev() {
-        System.setProperty(SDKConst.ENV_KEY, SDKEnv.DEV.name());
-        System.setProperty(SDKConst.APP_KEY_KEY, "1010");
-        System.setProperty(SDKConst.APP_SECRET_KEY, "bRFVbWHQ");
-
         OpenAPIEngine engine = new APIHelper();
         System.out.println(JSONObject.toJSONString(engine.getDocBaseInfo(1155L, 76068673L)));
     }

@@ -1,0 +1,32 @@
+
+---
+server:
+  port: 8097
+  tomcat:
+    threads:
+      max: 128
+spring:
+  config:
+    activate:
+      on-profile: DEV
+---
+server:
+  port: 8097
+  tomcat:
+    threads:
+      max: 128
+spring:
+  config:
+    activate:
+      on-profile: LOCAL
+
+---
+server:
+  port: 8097
+  tomcat:
+    threads:
+      max: 128
+spring:
+  config:
+    activate:
+      on-profile: ONLINE

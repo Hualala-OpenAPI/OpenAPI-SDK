@@ -51,7 +51,7 @@ public class APIHelper implements OpenAPIEngine {
         request.setShopID(shopID);
         DocBaseInfoBean requestBody = new DocBaseInfoBean();
         requestBody.setGroupID(groupID);
-//        requestBody.setShopID(shopID);
+        requestBody.setShopID(shopID);
         request.setRequestBody(requestBody);
 
         try {

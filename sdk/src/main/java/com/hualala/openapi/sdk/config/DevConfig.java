@@ -32,7 +32,7 @@ public class DevConfig {
     }
 
     private static String getSysProperty(String key) {
-        String value = System.getProperty(key);
+        String value = System.getenv(key);
         if (StringUtils.isNotEmpty(value)) {
             return value;
         } else {
