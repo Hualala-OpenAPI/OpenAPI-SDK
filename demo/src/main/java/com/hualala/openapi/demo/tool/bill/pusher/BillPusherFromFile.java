@@ -45,10 +45,6 @@ public class BillPusherFromFile {
 
     public static void main(String[] args) {
         OpenAPIEngine engine = new APIHelper();
-        System.setProperty(SDKConst.ENV_KEY, SDKEnv.ONLINE.name());
-
-        System.setProperty(SDKConst.APP_KEY_KEY, "1259");
-        System.setProperty(SDKConst.APP_SECRET_KEY, "tYsK2nNV");
 
         filePathList.forEach(path -> {
             BufferedReader reader = null;

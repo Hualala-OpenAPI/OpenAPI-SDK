@@ -44,10 +44,6 @@ public class Demo {
     }
 
     private static void testOrderDev() {
-        System.setProperty(SDKConst.ENV_KEY, SDKEnv.DEV.name());
-        System.setProperty(SDKConst.APP_KEY_KEY, "1010");
-        System.setProperty(SDKConst.APP_SECRET_KEY, "bRFVbWHQ");
-
         OpenAPIEngine engine = new APIHelper();
         ThirdOrderRequest request = new ThirdOrderRequest();
         //todo init request
@@ -56,49 +52,31 @@ public class Demo {
 
     private static void testOnline() {
         OpenAPIEngine engine = new APIHelper();
-        System.setProperty(SDKConst.ENV_KEY, SDKEnv.ONLINE.name());
-
-        System.setProperty(SDKConst.APP_KEY_KEY, "");
-        System.setProperty(SDKConst.APP_SECRET_KEY, "");
-
         ExamineVoucherBean bean = JSONObject.parseObject("", ExamineVoucherBean.class);
         System.out.println(JSONObject.toJSONString(engine.queryExamineVoucher(0L, bean)));
     }
 
     private static void testDataUpload() {
         OpenAPIEngine engine = new APIHelper();
-        System.setProperty(SDKConst.ENV_KEY, SDKEnv.ONLINE.name());
 
-        //need modify
-        System.setProperty(SDKConst.APP_KEY_KEY, "");
-        System.setProperty(SDKConst.APP_SECRET_KEY, "");
         long groupID = 0L, shopID = 0L;
         DataUploadBean bean = new DataUploadBean();
         bean.setGroupID(groupID);
         bean.setBusiness("评价");
         bean.setPk("");
         bean.setDatals("");
-        //modify end
 
         System.out.println(JSONObject.toJSONString(engine.dataUpload(groupID, shopID, bean)));
     }
 
     private static void testAllotGoods() {
         OpenAPIEngine engine = new APIHelper();
-        System.setProperty(SDKConst.ENV_KEY, SDKEnv.ONLINE.name());
-
-        System.setProperty(SDKConst.APP_KEY_KEY, "");
-        System.setProperty(SDKConst.APP_SECRET_KEY, "");
 
         AllotGoodsBean bean = JSONObject.parseObject("", AllotGoodsBean.class);
         System.out.println(JSONObject.toJSONString(engine.allotGoods(0L, bean)));
     }
 
     private static void testGetMenu() {
-        System.setProperty(SDKConst.ENV_KEY, SDKEnv.DEV.name());
-        System.setProperty(SDKConst.APP_KEY_KEY, "1010");
-        System.setProperty(SDKConst.APP_SECRET_KEY, "bRFVbWHQ");
-
         OpenAPIEngine engine = new APIHelper();
         System.out.println(JSONObject.toJSONString(engine.getMenu(1155L, 76068673L)));
     }

@@ -34,17 +34,10 @@ public class BillPusher {
         final long reportDate = 0L;
         final List<String> saasOrderKeyList = Arrays.asList("");
 
-        final String appKey = "";
-        final String appSecret = "";
-
         final String PUSH_URL = "http://XXX:XXXX" + "/addBillData";
         // end
 
         OpenAPIEngine engine = new APIHelper();
-        System.setProperty(SDKConst.ENV_KEY, SDKEnv.ONLINE.name());
-
-        System.setProperty(SDKConst.APP_KEY_KEY, appKey);
-        System.setProperty(SDKConst.APP_SECRET_KEY, appSecret);
 
         QueryBillDetailResponse response = engine.queryBillDetail(groupID, shopID, reportDate, saasOrderKeyList);
         if ("000".equals(response.getCode())) {

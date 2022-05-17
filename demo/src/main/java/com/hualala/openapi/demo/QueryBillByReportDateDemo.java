@@ -25,16 +25,9 @@ public class QueryBillByReportDateDemo {
         final long groupID = 0L;
         final long shopID = 0L;
         final long reportDate = 0L;
-
-        final String appKey = "";
-        final String appSecret = "";
         // end
 
         OpenAPIEngine engine = new APIHelper();
-        System.setProperty(SDKConst.ENV_KEY, SDKEnv.ONLINE.name());
-
-        System.setProperty(SDKConst.APP_KEY_KEY, appKey);
-        System.setProperty(SDKConst.APP_SECRET_KEY, appSecret);
 
         QueryBillDetailByReportDateResponse response = engine.queryBillDetailByReportDate(groupID, shopID, reportDate, 1, 50);
         if ("000".equals(response.getCode())) {
