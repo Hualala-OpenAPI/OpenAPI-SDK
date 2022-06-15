@@ -15,11 +15,12 @@ import org.apache.commons.lang3.StringUtils;
 
 @Slf4j
 public class Demo {
+    private static final OpenAPIEngine ENGINE = new APIHelper();
 
     public static void main(String[] arg) {
 //        testDecode();
 
-        testDev();
+        testGetAllShops();
 //        testOnline();
 //        testOrderDev();
 //        testDataUpload();
@@ -41,6 +42,10 @@ public class Demo {
     private static void testDev() {
         OpenAPIEngine engine = new APIHelper();
         System.out.println(JSONObject.toJSONString(engine.getDocBaseInfo(1155L, 76068673L)));
+    }
+
+    private static void testGetAllShops() {
+        System.out.println(ENGINE.getDocAllShops(282976));
     }
 
     private static void testOrderDev() {

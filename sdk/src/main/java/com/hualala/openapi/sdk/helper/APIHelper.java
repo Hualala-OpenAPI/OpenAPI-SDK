@@ -1,5 +1,6 @@
 package com.hualala.openapi.sdk.helper;
 
+import com.hualala.openapi.sdk.beans.request.BaseBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailByReportDateBean;
 import com.hualala.openapi.sdk.beans.request.crm.QueryUnionIDListBean;
@@ -20,6 +21,7 @@ import com.hualala.openapi.sdk.requests.promotion.QueryUserCouponDetailListReque
 import com.hualala.openapi.sdk.requests.report.DataUploadRequest;
 import com.hualala.openapi.sdk.requests.shop.DocBaseInfoRequest;
 import com.hualala.openapi.sdk.requests.shop.DocCreateShopRequest;
+import com.hualala.openapi.sdk.requests.shop.DocGetAllShopsRequest;
 import com.hualala.openapi.sdk.requests.shop.DocOpenFoodRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.AllotGoodsRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.ExamineVoucherRequest;
@@ -27,7 +29,6 @@ import com.hualala.openapi.sdk.responses.bill.QueryBillDetailByReportDateRespons
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailResponse;
 import com.hualala.openapi.sdk.responses.equityAccount.QueryProductItemsResponse;
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
-import com.hualala.openapi.sdk.responses.promotion.QueryUserCouponDetailListResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
 import com.hualala.openapi.sdk.responses.shop.DocBaseInfoResponse;
 import com.hualala.openapi.sdk.responses.shop.DocCreateShopResponse;
@@ -42,6 +43,22 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class APIHelper implements OpenAPIEngine {
+
+    public String getDocAllShops(long groupID) {
+        DocGetAllShopsRequest request = new DocGetAllShopsRequest();
+        request.setGroupID(groupID);
+        BaseBean bean = new BaseBean();
+        bean.setGroupID(groupID);
+        request.setRequestBody(bean);
+
+        try {
+            return WebUtil.post(request);
+        } catch (Exception e) {
+            log.error("getDocAllShops 异常. groupID: {}", groupID, e);
+        }
+
+        return "error";
+    }
 
     public DocBaseInfoResponse getDocBaseInfo(Long groupID, Long shopID) {
         DocBaseInfoResponse response = null;
@@ -137,7 +154,7 @@ public class APIHelper implements OpenAPIEngine {
 
             return WebUtil.post(request);
         } catch (Exception e) {
-            log.error("queryUserCouponDetailList 异常. bean: {}",  bean, e);
+            log.error("queryUserCouponDetailList 异常. bean: {}", bean, e);
         }
 
         return null;

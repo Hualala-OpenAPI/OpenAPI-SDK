@@ -23,6 +23,9 @@ import java.util.List;
 
 public interface OpenAPIEngine {
     //基本档
+    //todo format response
+    String getDocAllShops(long groupID);
+
     DocBaseInfoResponse getDocBaseInfo(Long groupID, Long shopID);
 
     DocOpenFoodResponse getMenu(Long groupID, Long shopID);
