@@ -44,7 +44,8 @@ public class BillPay {
     private String programType = StringUtils.EMPTY;
     private Integer paySubjectCount = 0;
     private String paymentID = StringUtils.EMPTY;   //支付单号
-
+    private String morePayParams = StringUtils.EMPTY;   //扩展参数. 已知可能含有thirdPartyPayTransNo(第三方支付单号), tradeNO(具体含义不详,余力说好像是会员卡支付的交易单号)
+	
     public void setSaasOrderKey(String value) {
         this.orderKey = value;
     }

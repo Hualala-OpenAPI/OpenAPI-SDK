@@ -68,6 +68,9 @@ public class BillAttach {
     private Long deliverCreateTime = 0L;
     private String deliverArea = StringUtils.EMPTY;
     private String inviteCode = StringUtils.EMPTY;
+    //外卖坐标
+    private String lon = StringUtils.EMPTY;
+    private String lat = StringUtils.EMPTY;
     private Integer action = 0;
     private Long actionTime = 0L;
     private Long createTime = 0L;

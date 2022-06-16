@@ -84,6 +84,7 @@ public class BillMaster {
     private String reviewBy = StringUtils.EMPTY;
     private Long reviewTime = 0L;
     private String shiftTime = StringUtils.EMPTY;
+    private String shiftName = StringUtils.EMPTY;
     private Integer action = 0;
     private Long actionTime = 0L;
     private Long createTime = 0L;
@@ -95,7 +96,9 @@ public class BillMaster {
     private String parentOrderKey = StringUtils.EMPTY;
     private String channelOrderKeyTP = StringUtils.EMPTY;
     private Integer chargeBackFlag = null; //空值说明saas版本有问题. 0: 正常单(默认), 1: 退单, 2: 冲销单, 3: 部分冲销单
-
+	private String userPayFlag = StringUtils.EMPTY;
+	private Integer crmChannelID = 0; //渠道ID
+	
     public void setSaasOrderKey(String v) {
         this.orderKey = v;
     }
