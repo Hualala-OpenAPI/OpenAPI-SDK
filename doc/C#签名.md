@@ -120,4 +120,115 @@
             return Convert.ToBase64String(cipherBytes);
 
         }
+        
+        /// <summary>
+        /// dictionary转为querystring
+        /// </summary>
+        /// 
+        /// <param name="dic">参数dictionary</param>
+        /// <param name="isSort">是否排序</param>
+        /// <param name="excludeKey">排除Key</param>
+        /// <returns>querystring</returns>
+        public static string DicToQueryString(this IDictionary<string, object> dic, bool isSort, string excludeKey = null)
+        {
+            var dicTmp = new Dictionary<string, string>();
+            
+            foreach (KeyValuePair<string, object> k in dic)
+            {
+                string key = k.Key;
+                object value = k.Value;
+                if (!string.IsNullOrEmpty(excludeKey) && excludeKey.Contains(key))
+                {
+                    continue;
+                }
+                GetKeyValue(key, value, ref dicTmp);
+            
+            }
+            if (isSort)
+            {
+                dicTmp = dicTmp.OrderBy(o => o.Key).ToDictionary(o => o.Key, p => p.Value);
+            }
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in dicTmp)
+            {
+                if (!string.IsNullOrEmpty(excludeKey) && excludeKey.Contains(item.Key))
+                {
+                    continue;
+                }
+                sb.Append(item.Key + item.Value);
+            }
+            var result = sb.ToString();
+            return result;
+            #region
+            #endregion
+        }
+
+        public static void GetKeyValue(string key, object obj, ref Dictionary<string, string> dic)
+        {
+            var type = obj.GetType();
+            if (obj == null || (obj is string && string.IsNullOrEmpty(obj.ToString())))
+            {
+                return;
+            }
+            if (type.IsValueType || obj is string)
+            {
+                if (!dic.Keys.Contains(key))
+                {
+                    dic.Add(key, type.IsValueType? obj.ToString().ToLower(): obj.ToString());
+                }
+            }
+            else //引用类型
+            {
+                var typeArr = type.GetProperties();
+                foreach (var propertyInfo in typeArr)
+                {
+                    object value = propertyInfo.GetValue(obj, null);
+                    if (value == null)
+                    {
+                        continue;
+                    }
+                    if (value.GetType().IsValueType)
+                    {
+                        GetKeyValue(propertyInfo.Name, value, ref dic);
+                    }
+                    //当该属性为List泛型时，或者为数组时。
+                    else if (propertyInfo.PropertyType.IsGenericType || propertyInfo.PropertyType.IsArray)
+                    {
+                        Type objType = value.GetType();//value为集合
+                        int count = Convert.ToInt32(objType.GetProperty("Count").GetValue(value, null));
+                        for (int i = 0; i < count; i++)
+                        {
+                            //如果是集合
+                            object item = objType.GetProperty("Item").GetValue(value, new object[] { i });
+                            GetKeyValue(propertyInfo.Name, item, ref dic);
+                            break;//运行一次，只取第一个元素参与签名验证
+                        }
+                    }
+                    //属性为引用类型
+                    else if (propertyInfo.PropertyType.IsClass)
+                    {
+                        GetKeyValue(propertyInfo.Name, value, ref dic);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
+        /// SHA1 加密（不可逆加密）
+        /// </summary>
+        /// <param name="pass">要加密的原始字串</param>
+        /// <returns></returns> 
+        public static string SHA1Encrypt(string pass)
+        {
+            System.Security.Cryptography.SHA1 sha1 = new System.Security.Cryptography.SHA1CryptoServiceProvider();
+            byte[] bytResult = sha1.ComputeHash(System.Text.Encoding.UTF8.GetBytes(pass));
+            sha1.Clear();
+            string strResult = BitConverter.ToString(bytResult);
+            strResult = strResult.Replace("-", "");
+            return strResult;
+            /* 另一种方法
+           pass = FormsAuthentication.HashPasswordForStoringInConfigFile(pass, "SHA1");
+            return pass;
+            */
+        }
 ```
