@@ -3,6 +3,7 @@ package com.hualala.openapi.sdk.helper;
 import com.hualala.openapi.sdk.beans.request.BaseBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailByReportDateBean;
+import com.hualala.openapi.sdk.beans.request.bill.QueryReportGeneralServiceBean;
 import com.hualala.openapi.sdk.beans.request.crm.QueryUnionIDListBean;
 import com.hualala.openapi.sdk.beans.request.equityAccount.QueryProductItemsBean;
 import com.hualala.openapi.sdk.beans.request.promotion.QueryUserCouponDetailListBean;
@@ -14,6 +15,7 @@ import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.intf.OpenAPIEngine;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailByReportDateRequest;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailRequest;
+import com.hualala.openapi.sdk.requests.bill.QueryReportGeneralServiceRequest;
 import com.hualala.openapi.sdk.requests.crm.QueryUnionIDListRequest;
 import com.hualala.openapi.sdk.requests.equityAccount.QueryProductItemsRequest;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
@@ -27,6 +29,7 @@ import com.hualala.openapi.sdk.requests.supplyChain.AllotGoodsRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.ExamineVoucherRequest;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailByReportDateResponse;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailResponse;
+import com.hualala.openapi.sdk.responses.bill.QueryReportGeneralServiceResponse;
 import com.hualala.openapi.sdk.responses.equityAccount.QueryProductItemsResponse;
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
@@ -231,6 +234,29 @@ public class APIHelper implements OpenAPIEngine {
             response = ResponseFormatter.format(resp, QueryBillDetailByReportDateResponse.class);
         } catch (Exception e) {
             log.error("queryBillDetailByReportDate 异常. groupID: {} shopID: {} date: {} page: {}-{}", groupID, shopID, reportDate, pageNo, pageSize, e);
+        }
+
+        return response;
+    }
+
+    public QueryReportGeneralServiceResponse queryReportGeneralService(long groupID, Long shopID, long reportDate, int pageNo, int pageSize) {
+        QueryReportGeneralServiceResponse response = null;
+        try {
+            QueryReportGeneralServiceRequest request = new QueryReportGeneralServiceRequest();
+            request.setGroupID(groupID);
+            request.setShopID(shopID);
+            QueryReportGeneralServiceBean bean = new QueryReportGeneralServiceBean();
+            bean.setGroupID(groupID);
+            bean.setShopID(shopID);
+            bean.setReportDate(reportDate);
+            bean.setPageNo(pageNo);
+            bean.setPageSize(pageSize);
+            request.setRequestBody(bean);
+
+            String resp = WebUtil.post(request);
+            response = ResponseFormatter.format(resp, QueryReportGeneralServiceResponse.class);
+        } catch (Exception e) {
+            log.error("queryReportGeneralService 异常. groupID: {} shopID: {} date: {} page: {}-{}", groupID, shopID, reportDate, pageNo, pageSize, e);
         }
 
         return response;

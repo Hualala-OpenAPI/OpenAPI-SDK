@@ -4,8 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.AllotGoodsBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
-import com.hualala.openapi.sdk.consts.SDKConst;
-import com.hualala.openapi.sdk.consts.SDKEnv;
 import com.hualala.openapi.sdk.helper.APIHelper;
 import com.hualala.openapi.sdk.intf.OpenAPIEngine;
 import com.hualala.openapi.sdk.requests.order.ThirdOrderRequest;
@@ -19,8 +17,9 @@ public class Demo {
 
     public static void main(String[] arg) {
 //        testDecode();
+        testDev();
 
-        testGetAllShops();
+//        testGetAllShops();
 //        testOnline();
 //        testOrderDev();
 //        testDataUpload();
@@ -40,8 +39,7 @@ public class Demo {
     }
 
     private static void testDev() {
-        OpenAPIEngine engine = new APIHelper();
-        System.out.println(JSONObject.toJSONString(engine.getDocBaseInfo(1155L, 76068673L)));
+        System.out.println(JSONObject.toJSONString(ENGINE.getDocBaseInfo(1155L, 76068673L)));
     }
 
     private static void testGetAllShops() {
@@ -49,21 +47,17 @@ public class Demo {
     }
 
     private static void testOrderDev() {
-        OpenAPIEngine engine = new APIHelper();
         ThirdOrderRequest request = new ThirdOrderRequest();
         //todo init request
-        System.out.println(JSONObject.toJSONString(engine.thirdOrder(request)));
+        System.out.println(JSONObject.toJSONString(ENGINE.thirdOrder(request)));
     }
 
     private static void testOnline() {
-        OpenAPIEngine engine = new APIHelper();
         ExamineVoucherBean bean = JSONObject.parseObject("", ExamineVoucherBean.class);
-        System.out.println(JSONObject.toJSONString(engine.queryExamineVoucher(0L, bean)));
+        System.out.println(JSONObject.toJSONString(ENGINE.queryExamineVoucher(0L, bean)));
     }
 
     private static void testDataUpload() {
-        OpenAPIEngine engine = new APIHelper();
-
         long groupID = 0L, shopID = 0L;
         DataUploadBean bean = new DataUploadBean();
         bean.setGroupID(groupID);
@@ -71,18 +65,15 @@ public class Demo {
         bean.setPk("");
         bean.setDatals("");
 
-        System.out.println(JSONObject.toJSONString(engine.dataUpload(groupID, shopID, bean)));
+        System.out.println(JSONObject.toJSONString(ENGINE.dataUpload(groupID, shopID, bean)));
     }
 
     private static void testAllotGoods() {
-        OpenAPIEngine engine = new APIHelper();
-
         AllotGoodsBean bean = JSONObject.parseObject("", AllotGoodsBean.class);
-        System.out.println(JSONObject.toJSONString(engine.allotGoods(0L, bean)));
+        System.out.println(JSONObject.toJSONString(ENGINE.allotGoods(0L, bean)));
     }
 
     private static void testGetMenu() {
-        OpenAPIEngine engine = new APIHelper();
-        System.out.println(JSONObject.toJSONString(engine.getMenu(1155L, 76068673L)));
+        System.out.println(JSONObject.toJSONString(ENGINE.getMenu(1155L, 76068673L)));
     }
 }
