@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class DocCreateShopRequest extends BaseRequest<DocCreateShopBean> {
 
     public DocCreateShopRequest() {
-        this.path = "/v2/doc/createShop";
+        this.path = "/v2/doc/creatShop";
     }
 
 }
