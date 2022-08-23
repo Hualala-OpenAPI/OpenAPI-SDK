@@ -2,6 +2,7 @@ package com.hualala.openapi.sdk.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.Feature;
 import com.hualala.openapi.sdk.beans.PairBean;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -80,7 +81,7 @@ public class SignUtil {
     public static String calcSign(String json) {
         String sign = null;
 
-        JSONObject jsonObject = JSONObject.parseObject(json);
+        JSONObject jsonObject = JSONObject.parseObject(json, Feature.OrderedField);
         if (null != jsonObject) {
             try {
                 Set<PairBean<String>> fieldList = parseValue(null, jsonObject);

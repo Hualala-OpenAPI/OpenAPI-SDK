@@ -1,7 +1,9 @@
 package com.hualala.openapi.demo;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
+import com.hualala.openapi.sdk.beans.request.shop.DocCreateShopBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.AllotGoodsBean;
 import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.helper.APIHelper;
@@ -17,7 +19,7 @@ public class Demo {
 
     public static void main(String[] arg) {
 //        testDecode();
-        testDev();
+//        testDev();
 
 //        testGetAllShops();
 //        testOnline();
@@ -25,6 +27,7 @@ public class Demo {
 //        testDataUpload();
 //        testAllotGoods();
 //        testGetMenu();
+        testCreateShop();
     }
 
     private static void testDecode() {
@@ -75,5 +78,11 @@ public class Demo {
 
     private static void testGetMenu() {
         System.out.println(JSONObject.toJSONString(ENGINE.getMenu(1155L, 76068673L)));
+    }
+
+    private static void testCreateShop() {
+        DocCreateShopBean bean = JSON.parseObject("", DocCreateShopBean.class);
+
+        System.out.println(ENGINE.createShop(bean.getGroupID().longValue(), bean));
     }
 }

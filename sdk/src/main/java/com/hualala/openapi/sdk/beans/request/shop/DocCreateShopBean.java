@@ -1,13 +1,13 @@
 package com.hualala.openapi.sdk.beans.request.shop;
 
-import com.hualala.openapi.sdk.beans.request.BaseBean;
 import lombok.Data;
 
 import java.util.List;
 import java.util.Map;
 
 @Data
-public class DocCreateShopBean extends BaseBean {
+public class DocCreateShopBean {
+    private Integer groupID;
     private Long brandID;
     private String shopName;
     private String openingHours;
@@ -19,7 +19,7 @@ public class DocCreateShopBean extends BaseBean {
     private String orgCode;
     private Integer operationMode;
     private String ACSPType;
-    private String ImagePath;
+    private String imagePath;
     private String newCountryID;
     private String newProvinceID;
     private String newCityID;

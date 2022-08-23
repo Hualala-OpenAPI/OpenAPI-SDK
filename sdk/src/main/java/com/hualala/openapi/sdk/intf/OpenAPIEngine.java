@@ -31,7 +31,9 @@ public interface OpenAPIEngine {
 
     DocOpenFoodResponse getMenu(Long groupID, Long shopID);
 
-    DocCreateShopResponse createShop(Long groupID, DocCreateShopBean shop);
+    //返回格式不标准, 用 string 接收 response
+//    DocCreateShopResponse createShop(Long groupID, DocCreateShopBean shop);
+    String createShop(Long groupID, DocCreateShopBean shop);
 
     //订单
     ThirdOrderResponse thirdOrder(ThirdOrderRequest request);

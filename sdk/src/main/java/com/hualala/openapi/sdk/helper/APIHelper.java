@@ -34,7 +34,6 @@ import com.hualala.openapi.sdk.responses.equityAccount.QueryProductItemsResponse
 import com.hualala.openapi.sdk.responses.order.ThirdOrderResponse;
 import com.hualala.openapi.sdk.responses.report.DataUploadResponse;
 import com.hualala.openapi.sdk.responses.shop.DocBaseInfoResponse;
-import com.hualala.openapi.sdk.responses.shop.DocCreateShopResponse;
 import com.hualala.openapi.sdk.responses.shop.DocOpenFoodResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.AllotGoodsResponse;
 import com.hualala.openapi.sdk.responses.supplyChain.ExamineVoucherResponse;
@@ -105,21 +104,18 @@ public class APIHelper implements OpenAPIEngine {
         return response;
     }
 
-    public DocCreateShopResponse createShop(Long groupID, DocCreateShopBean shop) {
-        DocCreateShopResponse response = null;
-
+    public String createShop(Long groupID, DocCreateShopBean shop) {
         DocCreateShopRequest request = new DocCreateShopRequest();
         request.setGroupID(groupID);
         request.setRequestBody(shop);
 
         try {
-            String resp = WebUtil.post(request);
-            response = ResponseFormatter.format(resp, DocCreateShopResponse.class);
+            return WebUtil.post(request);
         } catch (Exception e) {
             log.error("getMenu 异常. groupID: {} shopID: {}", groupID, shop, e);
         }
 
-        return response;
+        return null;
     }
 
     public ThirdOrderResponse thirdOrder(ThirdOrderRequest request) {
