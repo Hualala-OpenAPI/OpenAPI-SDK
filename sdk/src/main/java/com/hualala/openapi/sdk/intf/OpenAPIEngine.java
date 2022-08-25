@@ -58,6 +58,8 @@ public interface OpenAPIEngine {
     QueryBillDetailByReportDateResponse queryBillDetailByReportDate(long groupID, long shopID, long reportDate, int pageNo, int pageSize);
     QueryReportGeneralServiceResponse queryReportGeneralService(long groupID, Long shopID, long reportDate, int pageNo, int pageSize);
 
+    String queryBillReport(long groupID, long shopID, String maxReportDate, String minReportDate, int pageNO);
     //权益账户
     QueryProductItemsResponse queryProductItemsByProductCategory(long groupID, String source);
+
 }

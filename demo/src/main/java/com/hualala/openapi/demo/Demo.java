@@ -27,7 +27,8 @@ public class Demo {
 //        testDataUpload();
 //        testAllotGoods();
 //        testGetMenu();
-        testCreateShop();
+//        testCreateShop();
+        testQueryBillReport();
     }
 
     private static void testDecode() {
@@ -84,5 +85,9 @@ public class Demo {
         DocCreateShopBean bean = JSON.parseObject("", DocCreateShopBean.class);
 
         System.out.println(ENGINE.createShop(bean.getGroupID().longValue(), bean));
+    }
+
+    private static void testQueryBillReport() {
+        System.out.println(ENGINE.queryBillReport(0,0,"20220000", "20220000", 0));
     }
 }

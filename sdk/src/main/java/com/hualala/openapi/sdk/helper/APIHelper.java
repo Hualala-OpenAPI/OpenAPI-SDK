@@ -3,6 +3,7 @@ package com.hualala.openapi.sdk.helper;
 import com.hualala.openapi.sdk.beans.request.BaseBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailByReportDateBean;
+import com.hualala.openapi.sdk.beans.request.bill.QueryBillReportBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryReportGeneralServiceBean;
 import com.hualala.openapi.sdk.beans.request.crm.QueryUnionIDListBean;
 import com.hualala.openapi.sdk.beans.request.equityAccount.QueryProductItemsBean;
@@ -15,6 +16,7 @@ import com.hualala.openapi.sdk.beans.request.supplyChain.ExamineVoucherBean;
 import com.hualala.openapi.sdk.intf.OpenAPIEngine;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailByReportDateRequest;
 import com.hualala.openapi.sdk.requests.bill.QueryBillDetailRequest;
+import com.hualala.openapi.sdk.requests.bill.QueryBillReportRequest;
 import com.hualala.openapi.sdk.requests.bill.QueryReportGeneralServiceRequest;
 import com.hualala.openapi.sdk.requests.crm.QueryUnionIDListRequest;
 import com.hualala.openapi.sdk.requests.equityAccount.QueryProductItemsRequest;
@@ -256,6 +258,28 @@ public class APIHelper implements OpenAPIEngine {
         }
 
         return response;
+    }
+
+    public String queryBillReport(long groupID, long shopID, String maxReportDate, String minReportDate, int pageNO) {
+        try {
+            QueryBillReportRequest request = new QueryBillReportRequest();
+            request.setGroupID(groupID);
+            request.setShopID(shopID);
+            QueryBillReportBean bean = new QueryBillReportBean();
+            bean.setGroupID(groupID);
+            bean.setShopID(shopID);
+            bean.setMaxReportDate(maxReportDate);
+            bean.setMinReportDate(minReportDate);
+            bean.setPageNo(pageNO);
+            bean.setPageSize(50);
+            request.setRequestBody(bean);
+
+            return WebUtil.post(request);
+        } catch (Exception e) {
+            log.error("queryBillReport 异常. groupID: {} shopID: {} date: {} -{} page: {}", groupID, shopID, maxReportDate, minReportDate, pageNO, e);
+        }
+
+        return null;
     }
 
     public AllotGoodsResponse allotGoods(long groupID, AllotGoodsBean bean) {
