@@ -70,6 +70,22 @@ public class SignUtil {
                 for (String k : tmp.keySet()) {
                     set.addAll(parseValue(k, tmp.get(k)));
                 }
+            } else if (value instanceof String) {
+                String str = value.toString();
+
+                try {
+                    if (str.startsWith("{")) {
+                        JSONObject tmp = JSONObject.parseObject(value.toString());
+                        set.addAll(parseValue(key, tmp));
+                    } else if (str.startsWith("[")) {
+                        JSONArray tmp = JSONArray.parseArray(value.toString());
+                        set.addAll(parseValue(key, tmp));
+                    } else {
+                        set.add(new PairBean<>(key, value.toString()));
+                    }
+                } catch (Exception e) {
+                    set.add(new PairBean<>(key, value.toString()));
+                }
             } else {
                 set.add(new PairBean<>(key, value.toString()));
             }
