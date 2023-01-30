@@ -1,7 +1,6 @@
 package com.hualala.openapi.sdk.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.util.TypeUtils;
 import com.hualala.openapi.sdk.config.DevConfig;
 import com.hualala.openapi.sdk.consts.SDKEnv;
@@ -14,8 +13,10 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class WebUtil {
-    private static final OkHttpClient WEB_CLIENT = initClient();
     private static final String HOST = initHost();
+    private static final OkHttpClient WEB_CLIENT = initClient();
+
+    private static final String SIGN_VERSION = "3";
 
     private static OkHttpClient initClient() {
         return new OkHttpClient.Builder()
@@ -47,44 +48,19 @@ public class WebUtil {
     }
 
     public static <T> String post(BaseRequest<T> request) throws Exception {
-        //为了简化签名, 默认使用版本3. 如果需要, 可以切换到版本2.0
-        return post(request, "3");
-    }
-
-    public static <T> String post(BaseRequest<T> request, String version) throws Exception {
         valid(request);
 
         long timestamp = TimeUtil.getTimestamp();
-
-        JSONObject data = new JSONObject();
-        data.put("timestamp", timestamp);
-        data.put("appKey", DevConfig.getInstance().getAppKey());
-        data.put("appSecret", DevConfig.getInstance().getAppSecret());
-        data.put("version", version);
-        if (null != request.getRequestBody()) {
-            data.put("data", request.getRequestBody());
-        }
         TypeUtils.compatibleWithJavaBean = true; //用来处理特殊json驼峰字段类型
 
-        String sign, requestBody;
-        if ("3".equals(version)) {
-            requestBody = JSON.toJSONString(request.getRequestBody());
-            String plain = DevConfig.getInstance().getAppKey() + DevConfig.getInstance().getAppSecret() + timestamp + requestBody;
-            sign = SignUtil.get32MD5(plain);
-        } else {
-            sign = SignUtil.calcSign(JSON.toJSONString(data));
-            if (StringUtils.isEmpty(sign)) {
-                log.error("签名失败. request: {} devConfig: {}", request, DevConfig.getInstance());
-                return null;
-            }
-
-            requestBody = SignUtil.AESEncode(DevConfig.getInstance().getAppSecret(), JSONObject.toJSONString(request.getRequestBody()));
-        }
+        String requestBody = JSON.toJSONString(request.getRequestBody());
+        String plain = DevConfig.getInstance().getAppKey() + DevConfig.getInstance().getAppSecret() + timestamp + requestBody;
+        String sign = SignUtil.get32MD5(plain);
 
         FormBody.Builder bodyBuilder = new FormBody.Builder()
             .add("timestamp", String.valueOf(timestamp))
             .add("appKey", DevConfig.getInstance().getAppKey())
-            .add("version", version)
+            .add("version", SIGN_VERSION)
             .add(SignUtil.SIGNATURE, sign)
             .add("requestBody", requestBody);
 

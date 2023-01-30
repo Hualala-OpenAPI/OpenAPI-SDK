@@ -18,8 +18,7 @@ public class Demo {
     private static final OpenAPIEngine ENGINE = new APIHelper();
 
     public static void main(String[] arg) {
-//        testDecode();
-//        testDev();
+        testDev();
 
 //        testGetAllShops();
 //        testOnline();
@@ -28,18 +27,7 @@ public class Demo {
 //        testAllotGoods();
 //        testGetMenu();
 //        testCreateShop();
-        testQueryBillReport();
-    }
-
-    private static void testDecode() {
-        String appSecret = null;
-        String ciphertext = null;
-        String plaintext = SignUtil.AESDecode(appSecret, ciphertext);
-        if (StringUtils.isNotEmpty(plaintext)) {
-            log.info("\n***\n*解密结果:\n{}\n*appSecret:{}\n*密文:{}\n***\n", plaintext, appSecret, ciphertext);
-        } else {
-            log.error("\n***\n*解密失败\n*appSecret:{}\n*密文:{}\n***\n", appSecret, ciphertext);
-        }
+//        testQueryBillReport();
     }
 
     private static void testDev() {
