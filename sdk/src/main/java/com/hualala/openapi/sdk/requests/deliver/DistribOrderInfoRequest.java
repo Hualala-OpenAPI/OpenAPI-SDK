@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class DistribOrderInfoRequest extends BaseRequest<ThirdOrderBean> {
 
     public DistribOrderInfoRequest() {
-        this.path = "/manage/distribOrderInfo";
+        super("/manage/distribOrderInfo");
     }
 
 }

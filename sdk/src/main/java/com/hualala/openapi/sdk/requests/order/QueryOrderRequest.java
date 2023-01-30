@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class QueryOrderRequest extends BaseRequest<QueryOrderBean> {
     public QueryOrderRequest() {
-        this.path = "/order/query";
+        super("/order/query");
     }
 }
    

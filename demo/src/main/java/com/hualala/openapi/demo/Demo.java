@@ -18,7 +18,8 @@ public class Demo {
     private static final OpenAPIEngine ENGINE = new APIHelper();
 
     public static void main(String[] arg) {
-        testDev();
+        testAPI();
+//        testDev();
 
 //        testGetAllShops();
 //        testOnline();
@@ -28,6 +29,14 @@ public class Demo {
 //        testGetMenu();
 //        testCreateShop();
 //        testQueryBillReport();
+    }
+
+    private static void testAPI() {
+        String uri = "";
+        long groupID = 0;
+        Long shopID = 0L;
+        JSONObject body = JSONObject.parseObject("");
+        System.out.println(ENGINE.testAPI(uri, groupID, shopID, body));
     }
 
     private static void testDev() {

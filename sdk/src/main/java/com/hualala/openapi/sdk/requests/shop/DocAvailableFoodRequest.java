@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class DocAvailableFoodRequest extends BaseRequest<DocBaseInfoBean> {
     public DocAvailableFoodRequest() {
-        this.path = "/inventory/getAvailableFoodRemainQtyByShopID";
+        super("/inventory/getAvailableFoodRemainQtyByShopID");
     }
 }
    

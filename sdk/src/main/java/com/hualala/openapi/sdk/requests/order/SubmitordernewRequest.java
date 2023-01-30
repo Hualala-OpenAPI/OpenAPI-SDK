@@ -5,6 +5,6 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 
 public class SubmitordernewRequest extends BaseRequest<ThirdOrderBean> {
     public SubmitordernewRequest() {
-        this.path = "/order/submitordernew";
+        super("/order/submitordernew");
     }
 }

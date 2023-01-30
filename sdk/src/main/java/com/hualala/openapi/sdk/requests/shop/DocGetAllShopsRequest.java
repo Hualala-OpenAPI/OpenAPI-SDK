@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class DocGetAllShopsRequest extends BaseRequest<BaseBean> {
 
     public DocGetAllShopsRequest() {
-        this.path = "/doc/getAllShop";
+        super("/doc/getAllShop");
     }
 
 }

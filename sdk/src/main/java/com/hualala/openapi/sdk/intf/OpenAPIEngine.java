@@ -1,5 +1,6 @@
 package com.hualala.openapi.sdk.intf;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hualala.openapi.sdk.beans.request.crm.QueryUnionIDListBean;
 import com.hualala.openapi.sdk.beans.request.promotion.QueryUserCouponDetailListBean;
 import com.hualala.openapi.sdk.beans.request.report.DataUploadBean;
@@ -23,6 +24,7 @@ import com.hualala.openapi.sdk.responses.supplyChain.ExamineVoucherResponse;
 import java.util.List;
 
 public interface OpenAPIEngine {
+    String testAPI(String uri, long groupID, Long shopID, JSONObject requestBody);
     //基本档
     String getDocAllShops(long groupID);
 

@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class DocOpenFoodRequest extends BaseRequest<DocBaseInfoBean> {
 
     public DocOpenFoodRequest() {
-        this.path = "/doc/getOpenFood";
+        super("/doc/getOpenFood");
     }
 
 }

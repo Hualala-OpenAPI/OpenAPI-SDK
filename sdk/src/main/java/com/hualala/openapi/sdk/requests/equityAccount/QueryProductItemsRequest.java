@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class QueryProductItemsRequest extends BaseRequest<QueryProductItemsBean> {
 
     public QueryProductItemsRequest() {
-        this.path = "/v2/equityaccount/queryProductItemsByProductCategory";
+        super("/v2/equityaccount/queryProductItemsByProductCategory");
     }
 
 }

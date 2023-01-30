@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class AllotGoodsRequest extends BaseRequest<AllotGoodsBean> {
 
     public AllotGoodsRequest() {
-        this.path = "/v2/supplyChain/allotGoods";
+        super("/v2/supplyChain/allotGoods");
     }
 
 }

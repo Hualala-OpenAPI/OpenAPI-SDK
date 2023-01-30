@@ -1,5 +1,6 @@
 package com.hualala.openapi.sdk.helper;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hualala.openapi.sdk.beans.request.BaseBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailBean;
 import com.hualala.openapi.sdk.beans.request.bill.QueryBillDetailByReportDateBean;
@@ -29,6 +30,7 @@ import com.hualala.openapi.sdk.requests.shop.DocGetAllShopsRequest;
 import com.hualala.openapi.sdk.requests.shop.DocOpenFoodRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.AllotGoodsRequest;
 import com.hualala.openapi.sdk.requests.supplyChain.ExamineVoucherRequest;
+import com.hualala.openapi.sdk.requests.test.TestRequest;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailByReportDateResponse;
 import com.hualala.openapi.sdk.responses.bill.QueryBillDetailResponse;
 import com.hualala.openapi.sdk.responses.bill.QueryReportGeneralServiceResponse;
@@ -47,6 +49,21 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class APIHelper implements OpenAPIEngine {
+
+    public String testAPI(String uri, long groupID, Long shopID, JSONObject requestBody) {
+        TestRequest req = new TestRequest(uri);
+        req.setGroupID(groupID);
+        req.setShopID(shopID);
+        req.setRequestBody(requestBody);
+
+        try {
+            return WebUtil.post(req);
+        } catch (Exception e) {
+            log.error("test api exception", e);
+        }
+
+        return null;
+    }
 
     public String getDocAllShops(long groupID) {
         DocGetAllShopsRequest request = new DocGetAllShopsRequest();

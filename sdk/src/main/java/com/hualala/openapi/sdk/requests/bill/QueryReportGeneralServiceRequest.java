@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class QueryReportGeneralServiceRequest extends BaseRequest<QueryReportGeneralServiceBean> {
 
     public QueryReportGeneralServiceRequest() {
-        this.path = "/report/queryReportGeneralService";
+        super("/report/queryReportGeneralService");
     }
 
 }

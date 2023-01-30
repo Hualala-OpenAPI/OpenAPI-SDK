@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class QueryUnionIDListRequest extends BaseRequest<QueryUnionIDListBean> {
 
     public QueryUnionIDListRequest() {
-        this.path = "/v2/crm/queryUnionIDs";
+        super("/v2/crm/queryUnionIDs");
     }
 
 }

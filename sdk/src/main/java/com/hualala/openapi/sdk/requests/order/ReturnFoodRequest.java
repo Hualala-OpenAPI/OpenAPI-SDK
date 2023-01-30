@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ReturnFoodRequest extends BaseRequest<ReturnFoodBean> {
     public ReturnFoodRequest() {
-        this.path = "/order/returnFood";
+        super("/order/returnFood");
     }
 
 }

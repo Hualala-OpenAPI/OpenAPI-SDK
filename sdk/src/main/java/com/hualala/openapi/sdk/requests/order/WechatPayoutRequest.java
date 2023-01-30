@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class WechatPayoutRequest extends BaseRequest<WechatPayoutBean> {
     public WechatPayoutRequest() {
-        this.path = "/order/payout";
+        super("/order/payout");
     }
 }
    

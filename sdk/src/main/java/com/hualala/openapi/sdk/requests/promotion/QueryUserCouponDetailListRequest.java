@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class QueryUserCouponDetailListRequest extends BaseRequest<QueryUserCouponDetailListBean> {
 
     public QueryUserCouponDetailListRequest() {
-        this.path = "/v2/promotion/getUserCouponDetails";
+        super("/v2/promotion/getUserCouponDetails");
     }
 
 }

@@ -8,6 +8,6 @@ import lombok.Data;
 public class ThirdOrderRequest extends BaseRequest<ThirdOrderBean> {
 
     public ThirdOrderRequest() {
-        this.path = "/order/thirdOrder";
+        super("/order/thirdOrder");
     }
 }

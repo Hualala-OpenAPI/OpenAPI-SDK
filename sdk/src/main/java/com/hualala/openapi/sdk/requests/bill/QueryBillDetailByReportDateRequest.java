@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class QueryBillDetailByReportDateRequest extends BaseRequest<QueryBillDetailByReportDateBean> {
 
     public QueryBillDetailByReportDateRequest() {
-        this.path = "/report/getShopBillDetail";
+        super("/report/getShopBillDetail");
     }
 
 

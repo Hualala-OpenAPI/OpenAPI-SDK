@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ApplyRefundRequest extends BaseRequest<ApplyRefundBean> {
     public ApplyRefundRequest() {
-        this.path = "/order/applyRefund";
+        super("/order/applyRefund");
     }
 }
    

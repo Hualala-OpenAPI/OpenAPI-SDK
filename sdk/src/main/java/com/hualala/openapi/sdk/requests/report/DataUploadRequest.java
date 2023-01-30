@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class DataUploadRequest extends BaseRequest<DataUploadBean> {
 
     public DataUploadRequest() {
-        this.path = "/report/data/upload";
+        super("/report/data/upload");
     }
 
 }

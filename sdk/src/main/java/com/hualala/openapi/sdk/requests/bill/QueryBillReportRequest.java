@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class QueryBillReportRequest extends BaseRequest<QueryBillReportBean> {
 
     public QueryBillReportRequest() {
-        this.path = "/report/queryBillReport";
+        super("/report/queryBillReport");
     }
 
 }

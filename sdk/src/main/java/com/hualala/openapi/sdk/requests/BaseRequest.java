@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class BaseRequest<T> {
     @Getter
-    protected String path = null;
+    private String path;
     @Getter
     @Setter
     protected Long groupID = null;
@@ -19,5 +19,13 @@ public class BaseRequest<T> {
 
     public boolean valid() {
         return StringUtils.isNotEmpty(path) && null != groupID;
+    }
+
+    public BaseRequest(String path) {
+        this.path = path;
+    }
+
+    public BaseRequest() {
+        throw new RuntimeException("需要给参数[path]赋值");
     }
 }

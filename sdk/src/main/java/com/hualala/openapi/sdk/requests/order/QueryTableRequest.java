@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class QueryTableRequest extends BaseRequest<QueryTableBean> {
     public QueryTableRequest() {
-        this.path = "/order/queryTableMsg";
+        super("/order/queryTableMsg");
     }
 }
    

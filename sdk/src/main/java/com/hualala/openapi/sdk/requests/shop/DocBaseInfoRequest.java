@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class DocBaseInfoRequest extends BaseRequest<DocBaseInfoBean> {
 
     public DocBaseInfoRequest() {
-        this.path = "/doc/getBaseInfo";
+        super("/doc/getBaseInfo");
     }
 
 }

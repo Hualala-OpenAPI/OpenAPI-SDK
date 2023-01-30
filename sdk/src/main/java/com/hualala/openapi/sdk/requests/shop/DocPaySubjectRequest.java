@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class DocPaySubjectRequest extends BaseRequest<DocBaseInfoBean> {
     public DocPaySubjectRequest() {
-        this.path = "/doc/getPaySubject";
+        super("/doc/getPaySubject");
     }
 }
    

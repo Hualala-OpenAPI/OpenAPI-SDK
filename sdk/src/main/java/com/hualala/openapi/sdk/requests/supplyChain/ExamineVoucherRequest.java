@@ -6,7 +6,7 @@ import com.hualala.openapi.sdk.requests.BaseRequest;
 public class ExamineVoucherRequest extends BaseRequest<ExamineVoucherBean> {
 
     public ExamineVoucherRequest() {
-        this.path = "/v2/supplyChain/queryExamineVoucher";
+        super("/v2/supplyChain/queryExamineVoucher");
     }
 
 }

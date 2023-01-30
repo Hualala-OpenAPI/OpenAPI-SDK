@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class AddItemRequest extends BaseRequest<AddItemBean> {
     public AddItemRequest() {
-        this.path = "/order/addItems";
+        super("/order/addItems");
     }
 }
    

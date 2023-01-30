@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class UpdateOrderStatusRequest extends BaseRequest<UpdateOrderStatusBean> {
     public UpdateOrderStatusRequest() {
-        this.path = "/order/updateOrderStatus";
+        super("/order/updateOrderStatus");
     }
 
 }
